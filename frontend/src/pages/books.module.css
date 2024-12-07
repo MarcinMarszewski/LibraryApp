@@ -4,22 +4,52 @@
   background-color: lightblue;
   margin: 5px;
   border-radius: 20px;
-  width: 100%;
+  width: 99.6%;
+  height: 50px;
 }
 .grid_item {
   text-align: center;
-  padding: 20px;
+  padding-top: 7%;
   width: 100%;
   position: relative;
+  height: 37px;
 }
 
 .grid_item::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  bottom: 5px;
+  width: 3px;
+  background-color: lightsteelblue;
+  border-radius: 2px;
+}
+
+.grid_button {
+  text-align: center;
+  padding-top: 0%;
+  width: 90%;
+  position: relative;
+  height: 52px;
+  margin-left: 4px;
+}
+
+.grid_button::after {
 	content: '';
-	position: absolute;
-	top: 5px;
-	right: 15px;
-	bottom: 5px;
-	width: 3px;
-	background-color: lightsteelblue;
-	border-radius: 2px;
+  position: absolute;
+  top: 5px;
+  right: -14px;
+  bottom: 5px;
+  width: 3px;
+  background-color: lightsteelblue;
+  border-radius: 2px;
+}
+
+.grid_button2 {
+  text-align: center;
+  padding-top: 0%;
+  width: 90%;
+  position: relative;
+  height: 52px;
 }

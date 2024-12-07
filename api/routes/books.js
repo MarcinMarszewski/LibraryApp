@@ -54,10 +54,10 @@ router.post("/add", async (req, res) => {
 
     const book_id = result.rows[0].book_id;
 
-    for (const category_name of categories) {
+    for (const category of categories) {
       await pool.query(
         "INSERT INTO BookCategories (book_id, category_id) VALUES ($1, (SELECT category_id FROM Categories WHERE category_name = $2))",
-        [book_id, category_name.toLowerCase()]
+        [book_id, category.category_name]
       );
     }
 
