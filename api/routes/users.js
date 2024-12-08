@@ -31,7 +31,7 @@ router.post("/add", async (req, res) => {
     return res.status(400).json({ error: "Invalid email" });
   }
 
-  var phoneRegex = /^[0-9+-]$/;
+  var phoneRegex = /^[+]?[0-9]{9,12}$/;
   if (
     typeof phone_number !== "string" ||
     phone_number.trim() === "" ||
@@ -73,7 +73,7 @@ router.post("/update", async (req, res) => {
     return res.status(400).json({ error: "Invalid email" });
   }
 
-  var phoneRegex = /^[0-9+-]$/;
+  var phoneRegex = /^[+]?[0-9]{9,12}$/;
   if (
     typeof old_phone_number !== "string" ||
     old_phone_number.trim() === "" ||
@@ -95,6 +95,7 @@ router.post("/update", async (req, res) => {
       "UPDATE Users SET first_name = $1, last_name = $2, email = $3, phone_number = $4 WHERE user_id = (SELECT user_id FROM Users WHERE phone_number = $5)",
       [first_name, last_name, email, new_phone_number, old_phone_number]
     );
+    return res.status(200).json({ message: "User updated." });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

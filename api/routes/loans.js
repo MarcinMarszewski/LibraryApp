@@ -14,13 +14,13 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/add", async (req, res) => {
-  let { book_id, user_phone_number, loan_date } = req.body;
+  let { book_id, user_phone_number} = req.body;
 
   if (typeof book_id !== "number") {
     return res.status(400).json({ error: "Invalid book ID" });
   }
 
-  var phoneRegex = /^[0-9+-]$/;
+  var phoneRegex = /^[+]?[0-9]{9,12}$/;
   if (
     typeof user_phone_number !== "string" ||
     user_phone_number.trim() === "" ||
@@ -29,13 +29,11 @@ router.post("/add", async (req, res) => {
     return res.status(400).json({ error: "Invalid user phone number" });
   }
 
-  if (typeof loan_date !== "string" || loan_date.trim() === "") {
-    return res.status(400).json({ error: "Invalid loan date" });
-  }
+  loan_date = new Date().toISOString();
 
   try {
     const book_result = await pool.query(
-      "SELECT available FROM Books WHERE book_id = $1 RETURNING available",
+      "SELECT available FROM Books WHERE book_id = $1",
       [book_id]
     );
     if (book_result.rows.length === 0) {
@@ -57,21 +55,21 @@ router.post("/add", async (req, res) => {
 });
 
 router.post("/return", async (req, res) => {
-  let { book_id, return_date } = req.body;
+  let { book_id} = req.body;
+  console.log(req.body);
 
   if (typeof book_id !== "number") {
     return res.status(400).json({ error: "Invalid book ID" });
   }
 
-  if (typeof return_date !== "string" || return_date.trim() === "") {
-    return res.status(400).json({ error: "Invalid return date" });
-  }
+  return_date = new Date().toISOString();
 
   try {
     const loan_result = await pool.query(
-      "SELECT * FROM Loans WHERE book_id = $1 AND return_date IS NULL RETURNING loan_id",
+      "SELECT * FROM Loans WHERE book_id = $1 AND return_date IS NULL",
       [book_id]
     );
+    console.log(loan_result);
     if (loan_result.rows.length === 0) {
       return res.status(400).json({ error: "Loan not found" });
     }
