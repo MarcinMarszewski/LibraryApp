@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import styles from './categories.module.css';
+import Input from '@/components/Input';
+import Button from '@/components/Button';
 
 const Categories = () => {
     const [categories, setCategories] = useState<any[]>([]);
@@ -65,24 +68,24 @@ const Categories = () => {
     };
 
     return (
-        <div>
-            <h1>Manage Categories</h1>
+        <div className={styles.vertical_fit}>
+            <div className={styles.title}>Kategorie</div>
             <form onSubmit={handleAddCategory}>
-                <input
-                    type="text"
-                    value={newCategory}
-                    onChange={(e) => setNewCategory(e.target.value)}
-                    placeholder="Add new category"
-                    required
-                />
-                <button type="submit">Add Category</button>
+                <div className={styles.horizontal_fit}>
+                    <div className={styles.input}>
+                        <Input type="text" onChange={(e : any) => setNewCategory(e.target.value)}>Nazwa:</Input>
+                    </div>
+                    <div className={styles.submit}>
+                        <Button type="submit">Dodaj</Button>
+                    </div>
+                </div>
             </form>
             <ul>
                 {categories.map((category) => (
-                    <li key={category.category_id}>
-                        {category.category_name}
-                        <button onClick={() => handleRemoveCategory(category.category_id)}>Remove</button>
-                    </li>
+                    <div className={styles.horizontal_fit} key={category.category_id}>
+                        <div className={styles.category_name}>{category.category_name}</div>
+                        <div className={styles.delete_btn}><Button onClick={() => handleRemoveCategory(category.category_id)}>Usuń</Button></div>
+                    </div>
                 ))}
             </ul>
         </div>

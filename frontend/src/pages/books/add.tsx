@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import MultiSelectDropdown from '@/components/MultiSelectDropdown';
+import styles from './add.module.css';
+import Button from '@/components/Button';
+import Input from '@/components/Input';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
@@ -28,7 +31,7 @@ const AddBook = () => {
     }
 }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e : any) => {
     e.preventDefault();
     const newBook = { title, author, isbn, year: Number(year), state, categories };
     console.log(newBook);
@@ -59,38 +62,30 @@ const AddBook = () => {
   };
 
   return (
-    <div>
-      <h1>Add a New Book</h1>
+    <div className={styles.vertical_fit}>
+      <div className={styles.horizontal_fit}>
+        <div className={styles.title} >Dodaj Książkę</div>
+          <div className={styles.books_btn}>
+            <Button onClick={() => window.location.href = "/books"}>Lista Książek</Button>
+          </div>
+		  </div>
+
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Title:</label>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-        </div>
-        <div>
-          <label>Author:</label>
-          <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} required />
-        </div>
-        <div>
-          <label>ISBN:</label>
-          <input type="text" value={isbn} onChange={(e) => setIsbn(e.target.value)} required />
-        </div>
-        <div>
-          <label>Year:</label>
-          <input type="number" value={year} onChange={(e) => setYear(e.target.value)} required />
-        </div>
-        <div>
-          <label>State:</label>
-          <input type="text" value={state} onChange={(e) => setState(e.target.value)} />
-        </div>
-        <div>
-          <label>Categories:</label>
+        <Input type="text" name ="title" onChange={(e : any) => setTitle(e.target.value)}>Tytuł:</Input>
+        <Input type="text" name ="author" onChange={(e : any) => setAuthor(e.target.value)}>Autor:</Input>
+        <Input type="text" name ="isbn" onChange={(e : any) => setIsbn(e.target.value)}>ISBN:</Input>
+        <Input type="text" name ="year" onChange={(e : any) => setYear(e.target.value)}>Rok:</Input>
+        <Input type="text" name ="state" onChange={(e : any) => setState(e.target.value)}>Stan:</Input>
+        <div className={styles.category_select}>
           <MultiSelectDropdown
             options={allCategories}
             selectedOptions={categories}
             onChange={setCategories}
             displayProperty='category_name'/>
         </div>
-        <button type="submit">Add Book</button>
+        <div className={styles.add_btn}>
+         <Button type="submit">Dodaj Książkę</Button>
+        </div>
       </form>
     </div>
   );

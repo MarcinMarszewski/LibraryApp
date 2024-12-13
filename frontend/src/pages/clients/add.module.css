@@ -1,0 +1,28 @@
+.horizontal_fit {
+    display: flex;
+    flex-direction: row;
+    max-height: 50px;
+  }
+  
+  .vertical_fit {
+    position: relative;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    width: 400%;
+    font-size: 30px;
+  }
+
+  .client_btn {
+    width: 100%;
+    margin-right: 20px;
+    position: relative;
+    right: -6px;
+  }
+
+  .submit {
+    width: 20%;
+  }

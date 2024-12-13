@@ -7,3 +7,10 @@
   top: 0;
   left: 0;
 }
+
+.inner_div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-right: 10px;
+}

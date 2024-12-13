@@ -12,11 +12,11 @@ function MyApp({ Component, pageProps } : any) {
 			<Sidebar/>
 		</div>
 		<div className='main-site'>
-			<div className='header'>
-				<Header/>
-			</div>
 			<div className="main-content">
 				<Component {...pageProps}/>
+			</div>
+			<div className='header'>
+				<Header/>
 			</div>
 			<div className='footer'>
 				<Footer/>

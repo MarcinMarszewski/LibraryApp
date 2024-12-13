@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './MultiSelectDropdown.module.css';
 
 interface MultiSelectDropdownProps {
   options: string[];
@@ -19,15 +20,15 @@ const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({ options, sele
   };
 
   return (
-    <div className="multi-select-dropdown">
+    <div className={styles.multiselect_dropdown}>
       <div className="dropdown-header" onClick={() => setIsOpen(!isOpen)}>
-      {selectedOptions.length > 0 ? selectedOptions.map(option => option[displayProperty]).join(', ') : 'Select categories'}
+      {selectedOptions.length > 0 ? selectedOptions.map(option => option[displayProperty]).join(', ') : 'Wybierz kategorie'}
         <span className="dropdown-arrow">{isOpen ? '▲' : '▼'}</span>
       </div>
       {isOpen && (
-        <div className="dropdown-list">
+        <div className={styles.dropdown_list}>
           {options.map(option => (
-            <label key={option} className="dropdown-item">
+            <label key={option} className={styles.dropdown_item}>
               <input
                 type="checkbox"
                 checked={selectedOptions.includes(option)}

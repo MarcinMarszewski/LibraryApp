@@ -1,7 +1,8 @@
 .main_div {
+    position: absolute;
     background-color: darkcyan;
     color: white;
-    text-align: right;
+    text-align: center;
     width: 100%;
     height: 40px;
     padding-top: 20px;

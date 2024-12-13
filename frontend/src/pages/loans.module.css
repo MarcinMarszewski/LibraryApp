@@ -1,0 +1,84 @@
+.horizontal_fit {
+    display: flex;
+    flex-direction: row;
+    max-height: 50px;
+  }
+  
+  .vertical_fit {
+    position: relative;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    width: 400%;
+    font-size: 30px;
+  }
+
+  .loan_btn {
+    width: 100%;
+    margin-right: 20px;
+    position: relative;
+    right: 25px;
+  }
+
+  .grid_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    background-color: lightblue;
+    margin: 5px;
+    border-radius: 20px;
+    width: 101%;
+    height: 50px;
+    position: relative;
+    right: 32px;
+  }
+
+  .grid_container_desc {
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    background-color: lightblue;
+    margin: 5px;
+    border-radius: 20px;
+    width: 101%;
+    height: 50px;
+    position: relative;
+    right: 32px;
+  }
+  
+  .grid_item {
+    text-align: center;
+    padding-top: 7%;
+    width: 100%;
+    position: relative;
+    height: 37px;
+  }
+  
+  .grid_item::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 0px;
+    bottom: 5px;
+    width: 3px;
+    background-color: lightsteelblue;
+    border-radius: 2px;
+  }
+
+  .grid_item_last {
+    text-align: center;
+    padding-top: 7%;
+    width: 100%;
+    position: relative;
+    height: 37px;
+  }
+  
+  .grid_button {
+    text-align: center;
+    padding-top: 0%;
+    width: 90%;
+    position: relative;
+    height: 52px;
+  }

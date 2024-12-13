@@ -1,0 +1,36 @@
+.title {
+    width: 600%;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.input {
+    width: 83%;
+}
+
+.submit {
+    width: 15%;
+}
+
+.horizontal_fit {
+    display: flex;
+    flex-direction: row;
+    max-height: 50px;
+}
+
+.vertical_fit {
+    position: relative;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+.category_name {
+    align-self: center;
+    min-width: 20%;
+    font-size: 18px;
+}
+
+.delete_btn {
+    width: 10%;
+}

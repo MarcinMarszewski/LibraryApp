@@ -1,0 +1,43 @@
+@startuml
+
+entity "Books" as books {
+  +book_id: SERIAL
+  title: VARCHAR(255)
+  author: VARCHAR(255)
+  isbn: VARCHAR(13)
+  year: INTEGER
+  state: VARCHAR(255)
+  available: BOOLEAN
+}
+
+entity "Users" as users {
+  +user_id: SERIAL
+  first_name: VARCHAR(100)
+  last_name: VARCHAR(100)
+  email: VARCHAR(255)
+  phone_number: VARCHAR(15)
+}
+
+entity "Loans" as loans {
+  +loan_id: SERIAL
+  loan_date: DATE
+  return_date: DATE
+}
+
+entity "Categories" as categories {
+  +category_id: SERIAL
+  category_name: VARCHAR(100)
+}
+
+entity "BookCategories" as bookCategories {
+  +book_id: INTEGER
+  +category_id: INTEGER
+}
+
+' Relationships
+books -- loans : "1"  "*"
+users -- loans : "1"  "*"
+books -- bookCategories : "1"  "*"
+categories -- bookCategories : "1"  "*"
+
+@enduml

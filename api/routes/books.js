@@ -72,7 +72,7 @@ router.post("/add", async (req, res) => {
 router.post("/query", async (req, res) => {
   const { title, author, isbn, year, state, categories } = req.body;
 
-  let query = "SELECT * FROM Books WHERE TRUE";
+  let query = "SELECT b.book_id, b.title, b.author, b.isbn, b.year, b.state, b.available, STRING_AGG(c.category_name, ', ') AS categories FROM Books b JOIN BookCategories bc ON b.book_id = bc.book_id JOIN Categories c ON bc.category_id = c.category_id WHERE TRUE";
 
   if (typeof title === "string" && title.trim() !== "") {
     query += ` AND title ILIKE ${escapeLiteral("%" + title + "%")}`;
@@ -99,11 +99,13 @@ router.post("/query", async (req, res) => {
     query += ` AND state ILIKE ${escapeLiteral("%" + state + "%")}`;
   }
 
-  if (Array.isArray(categories) && categories.length !== 0) {
-    query += ` AND book_id IN (SELECT book_id FROM BookCategories WHERE category_id IN (SELECT category_id FROM Categories WHERE category_name ILIKE ANY (ARRAY[${categories
-      .map((cat) => escapeLiteral(cat))
+  if (Array.isArray(categories) && categories.length !== 0 && categories[0].trim() !== "") {
+    query += ` AND b.book_id IN (SELECT book_id FROM BookCategories WHERE category_id IN (SELECT category_id FROM Categories WHERE category_name ILIKE ANY (ARRAY[${categories
+      .map((cat) => escapeLiteral(cat.trim()))
       .join(", ")}])))`;
   }
+
+  query += " GROUP BY b.book_id";
 
   try {
     const result = await pool.query(query);

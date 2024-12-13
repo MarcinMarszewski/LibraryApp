@@ -5,15 +5,23 @@ import Button from './Button';
 const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
+		<div className={styles.inner_div}>
 			  <Button onClick={() => window.location.href = '/'}>
-				Home
+				Strona Główna
 			  </Button>
 			  <Button onClick={() => window.location.href = '/books'}>
-				Books
+				Książki
 			  </Button>
-			  <Button onClick={() => window.location.href = '/info'}>
-				Info
+			  <Button onClick={() => window.location.href = '/categories'}>
+				Kategorie
 			  </Button>
+			  <Button onClick={() => window.location.href = '/clients'}>
+				Klienci
+			  </Button>
+			  <Button onClick={() => window.location.href = '/loans'}>
+				Wypożyczenia
+			  </Button>
+		</div>
     </div>
   );
 };

@@ -1,0 +1,37 @@
+.horizontal_fit {
+    display: flex;
+    flex-direction: row;
+    max-height: 50px;
+  }
+
+  .title {
+    width: 600%;
+    font-size: 30px;
+  }
+
+  .books_btn {
+    width:100%;
+    position: relative;
+    right: 25px;
+  }
+
+  .add_btn {
+    position: relative;
+    right: -8px;
+    width: 14.3%;
+    top: 8px;
+  }
+
+  .category_select {
+    position: relative;
+    left: 55px;
+    font-size: 20px;
+    margin-top: 5px;
+  }
+  
+.vertical_fit {
+    position: relative;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
